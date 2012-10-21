@@ -6,10 +6,14 @@ public class HTML extends Element {
     private Head head;
     private Body body;
 
-    protected HTML() {
+    public HTML(Head head, Body body) {
         super("html");
-        head = null;
-        body = null;
+        this.head = head;
+        this.body = body;
+    }
+
+    public HTML() {
+        this(null, null);
     }
 
     @Override
@@ -18,7 +22,7 @@ public class HTML extends Element {
     }
 
     @Override
-    protected Object getContent() {
+    public Object getContent() {
         ArbitraryContent content = new ArbitraryContent();
         if (head != null)
             content.add(head);

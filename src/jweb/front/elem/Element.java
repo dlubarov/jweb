@@ -21,7 +21,8 @@ public abstract class Element implements TopCategory {
 
     @Override
     public final String toString() {
-        StringBuilder sb = new StringBuilder("<").append(elemName).append(getAttributes()).append('>');
+        StringBuilder sb = new StringBuilder("<").append(elemName)
+                .append(getAttributes()).append('>');
         if (getContent() != null)
             sb.append(getContent());
         return sb.append("</").append(elemName).append('>').toString();

@@ -12,7 +12,7 @@ public class UnorderedList extends Element implements FlowCategory {
     }
 
     @Override
-    protected Object getContent() {
+    public Object getContent() {
         return content;
     }
 

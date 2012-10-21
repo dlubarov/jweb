@@ -5,13 +5,13 @@ import jweb.front.content.FlowContent;
 public class Body extends Element {
     private final FlowContent content;
 
-    protected Body() {
+    public Body() {
         super("body");
         content = new FlowContent();
     }
 
     @Override
-    protected Object getContent() {
+    public FlowContent getContent() {
         return content;
     }
 

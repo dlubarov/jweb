@@ -3,6 +3,7 @@ package jweb.http;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.*;
+import jweb.front.elem.HTML;
 
 public class Response {
     private static final Charset UTF8 = Charset.forName("UTF-8");
@@ -26,6 +27,10 @@ public class Response {
 
     public Response(String text) {
         this(200, new HashMap<String, String>(), text, "plain");
+    }
+
+    public Response(HTML html) {
+        this(200, new HashMap<String, String>(), html.toString(), "html");
     }
 
     private void addHeaderIfMissing(String header, String value) {

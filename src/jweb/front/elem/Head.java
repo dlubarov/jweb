@@ -5,13 +5,13 @@ import jweb.front.content.MetadataContent;
 public class Head extends Element {
     public final MetadataContent content;
 
-    protected Head() {
+    public Head() {
         super("head");
         content = new MetadataContent();
     }
 
     @Override
-    protected Object getContent() {
+    public MetadataContent getContent() {
         return content;
     }
 

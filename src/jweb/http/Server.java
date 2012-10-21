@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 import java.util.concurrent.*;
+import jweb.Logger;
 
 public class Server {
     private final ExecutorService executor;
@@ -35,8 +36,9 @@ public class Server {
             Map<String, String> headers = new HashMap<String, String>();
             for (;;) {
                 String line = lineReader.readLine();
-                if (line.isEmpty())
+                if (line.isEmpty()) {
                     break;
+                }
                 String[] parts = line.split(":");
                 String header = parts[0], value = parts[1];
                 headers.put(header, value);
@@ -52,7 +54,7 @@ public class Server {
 
                 // Read the request line.
                 String requestLine = lineReader.readLine();
-                System.out.println(requestLine);
+                Logger.info("Request line: %s", requestLine);
                 String[] requestLineParts = requestLine.split(" ");
                 String methodName = requestLineParts[0];
                 Method method = Method.valueOf(methodName);
@@ -85,7 +87,7 @@ public class Server {
                 os.flush(); os.close();
                 sock.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                Logger.error("Error in worker.", e);
             }
         }
     }

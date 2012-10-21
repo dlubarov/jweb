@@ -2,6 +2,7 @@ package jweb.demo.calc;
 
 import java.util.Scanner;
 
+import jweb.Logger;
 import jweb.http.*;
 
 public class CalculationHandler implements Handler {
@@ -10,8 +11,9 @@ public class CalculationHandler implements Handler {
         int x = sc.nextInt();
         while (sc.hasNext()) {
             String op = sc.next();
-            if (!op.equals("+"))
+            if (!op.equals("+")) {
                 return -1;
+            }
             x += sc.nextInt();
         }
         return x;
@@ -21,7 +23,11 @@ public class CalculationHandler implements Handler {
     public Response handle(Request req) {
         if (req.method != Method.GET)
             return null;
+
         String exp = req.resource.substring(1);
-        return new Response(Integer.toBinaryString(evaluate(exp)));
+        Logger.info("Evaluating: %s", exp);
+        int result = evaluate(exp);
+        Logger.info("Result: %d.", result);
+        return new Response(Integer.toString(result));
     }
 }
